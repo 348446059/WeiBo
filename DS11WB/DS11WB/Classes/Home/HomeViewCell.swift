@@ -1,0 +1,137 @@
+//
+//  HomeViewCell.swift
+//  DS11WB
+//
+//  Created by libo on 2017/10/27.
+//  Copyright © 2017年 libo. All rights reserved.
+//
+
+import UIKit
+import SDWebImage
+private let edgeMargin:CGFloat = 15
+private let itemMargin:CGFloat = 10
+class HomeViewCell: UITableViewCell {
+  //MARK：属性
+    
+    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet weak var verifiedView: UIImageView!
+    @IBOutlet weak var screenName: UILabel!
+    
+    @IBOutlet weak var vipView: UIImageView!
+    @IBOutlet weak var contentWidth: NSLayoutConstraint!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var soucreLabel: UILabel!
+    
+    @IBOutlet weak var picViewWCons: NSLayoutConstraint!
+    @IBOutlet weak var picViewHCons: NSLayoutConstraint!
+    
+    @IBOutlet weak var picView: PicCollectionView!
+    
+    @IBOutlet weak var revertLabel: UILabel!
+    
+    var viewModel:StatusViewModel?{
+        didSet{
+            //1.nil值校验
+            guard let viewModel = viewModel else {
+                return
+            }
+            //2.设置头像
+            iconView.setImageWith(viewModel.profileUrl!, placeholderImage: #imageLiteral(resourceName: "avatar_default"))
+            
+            //3.设置认证图标
+            verifiedView.image = viewModel.verifiedImage
+            
+            //4.昵称
+            screenName.text = viewModel.status?.user?.screen_name
+            
+            //5.会员图标
+            vipView.image = viewModel.vipImage
+            
+            //6.设置时间
+            timeLabel.text = viewModel.createAtText
+            
+            //7.设置来源
+            contentLabel.text = viewModel.status?.text
+            
+            //8.设置昵称的文字颜色
+            screenName.textColor = viewModel.vipImage == nil ? UIColor.black : UIColor.orange
+            
+            //9.计算picView宽度和高度的约束
+            let picViewSize = calculatePicViewSize(count: viewModel.picURLs.count)
+            picViewWCons.constant = picViewSize.width
+            picViewHCons.constant = picViewSize.height
+            
+            //10.将picURLs数据传给picView
+            picView.picURLs = viewModel.picURLs
+            
+            //11.设置转发微博
+            if viewModel.status?.retweeted_status != nil {
+               
+                if let screenName =  viewModel.status?.retweeted_status?.user?.screen_name, let retweentedText = viewModel.status?.retweeted_status?.text{
+                    revertLabel.text = "@" + "\(screenName):" + retweentedText
+                }
+            }else{
+                revertLabel.text = ""
+            }
+            
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        contentWidth.constant = UIScreen.main.bounds.width - 2 * edgeMargin
+        
+     
+    }
+   
+}
+
+//MARK:--计算
+extension HomeViewCell{
+    private func calculatePicViewSize(count:Int) -> CGSize {
+         //1.没有配图
+        if count == 0{
+            return CGSize.zero
+        }
+        //2.取出picView的layout
+        let layout = picView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+       
+        //3.单张配图
+        if count == 1 {
+            //1.取出图片
+            let image = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: viewModel?.picURLs.first?.absoluteString)
+            //设置一张图片的itemSize
+            layout.itemSize = CGSize(width: (image?.size)!.width * 2, height: (image?.size)!.height * 2)
+            
+            return CGSize(width: (image?.size)!.width * 2, height: (image?.size)!.height * 2)
+        }
+        //4.计算出来的imageViewWH
+        let imageViewWH = (UIScreen.main.bounds.width - 2*edgeMargin - 2*itemMargin) / 3
+        
+        //5.设置多张图片的itemSize
+        layout.itemSize = CGSize(width: imageViewWH, height: imageViewWH )
+        
+     
+        //6.四张配图
+        if count == 4 {
+            let picViewWH = imageViewWH * 2 + itemMargin
+            return CGSize(width: picViewWH, height: picViewWH)
+        }
+        
+        //7.1.其它
+        let rows = CGFloat((count - 1)/3 + 1)
+        
+        //7.2 计算picView高度
+        let picViewH = rows * imageViewWH + (rows - 1)*itemMargin
+        
+        //7.3 计算picView宽度
+        let picViewW = UIScreen.main.bounds.width - 2*edgeMargin
+         return CGSize(width: picViewW, height: picViewH )
+        
+    }
+}
+
+

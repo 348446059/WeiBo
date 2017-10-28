@@ -8,16 +8,12 @@
 
 import UIKit
 
-class ProfileViewController: UITableViewController {
+class ProfileViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+         visitorView.setupVisitorViewInfo(iconName: "visitordiscover_image_profile", title: "登陆后可以评价别人微博,给你发消息，都会在这里通知")
     }
 
     override func didReceiveMemoryWarning() {

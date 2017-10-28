@@ -7,89 +7,141 @@
 //
 
 import UIKit
-
-class HomeViewController: UITableViewController {
-
+import SDWebImage
+class HomeViewController: BaseViewController {
+    
+    //MARK:--懒加载
+    //1.闭包中使用当前对象的属性self 2.函数中出现歧义
+    private lazy var popoverAnimator:PopverAnimator = PopverAnimator {[weak self] (presented) in
+        self?.titleBtn.isSelected = presented
+    }
+    private lazy var viewModels:[StatusViewModel] = [StatusViewModel]()
+    //MARK:--懒加载
+    private lazy var titleBtn: TitleBtn = TitleBtn()
     override func viewDidLoad() {
         super.viewDidLoad()
-      
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //1.没有登陆时设置的内容
+        visitorView.addRotationAnim()
+      //  https://api.weibo.com/2/statuses/home_timeline.json
+        //2.设置导航栏的内容
+        if !isLogin {
+            return
+        }
+        
+        setNavigationBar()
+        
+        //3.加载首页数据
+        loadStatuses()
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+}
+//MARK:- 设置UI界面
+extension HomeViewController{
+    //1.设置Item
+    private func setNavigationBar() {
+       
+        let leftImage = #imageLiteral(resourceName: "navigationbar_friendattention")
+        leftImage.accessibilityIdentifier = "navigationbar_friendattention"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image:leftImage)
+        //右侧按钮
+        let rightImage = #imageLiteral(resourceName: "navigationbar_pop")
+        rightImage.accessibilityIdentifier = "navigationbar_pop"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: rightImage)
+        
+        //titleView
+        navigationItem.titleView = titleBtn
+        titleBtn.addTarget(self, action: #selector(titleBtnClick(titleBtn:)), for: .touchUpInside)
     }
+}
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+//MARK:--事件监听
+extension HomeViewController{
+    @objc private func titleBtnClick(titleBtn:TitleBtn){
+       
+        //1.创建弹出的控制器
+        let popoverVC = PopoverViewController()
+        
+        popoverVC.modalPresentationStyle = .custom
+        
+        //2.设置转场动画
+        popoverVC.transitioningDelegate = popoverAnimator
+        popoverAnimator.coverFrame = CGRect(x: 100, y: 55, width: 180, height: 250)
+        //3.弹出控制器
+        present(popoverVC, animated: true, completion: nil)
+        
     }
+}
 
+//MARK：--请求数据
+extension HomeViewController{
+    private func loadStatuses(){
+        NetworkTools.shareInstance.loadStatuses { (result, error) in
+            //1.数据错误校验
+            if error != nil{
+                return
+            }
+            
+            //2.获取可选类型的数据
+            guard let resultArray = result else{
+                return
+            }
+            //3.便利数据
+            for statusDic in resultArray{
+                let status = Statuses(dict: statusDic)
+                let viewModel = StatusViewModel(status: status  )
+                self.viewModels.append(viewModel)
+            }
+            //4.缓存图片
+            self.cacheImages(viewModels: self.viewModels)
+          //  self.tableView.reloadData()
+        }
+        
+    }
+    
+    private func cacheImages(viewModels:[StatusViewModel]){
+        let group = DispatchGroup.init()
+        
+       
+        
+        //1.缓存图片
+        for viewModel in viewModels {
+            for picURL in viewModel.picURLs {
+                group.enter()
+                SDWebImageManager.shared().loadImage(with: picURL, options: [], progress: nil, completed: { (_, _, _, _, _, _) in
+                    group.leave()
+                })
+                
+            }
+        }
+        
+        //2.刷新表格
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
+        }
+        
+    }
+}
+
+//MARK:--tableview
+extension HomeViewController{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return viewModels.count
     }
-
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        //1.创建cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCellID") as! HomeViewCell
+        //2.设置数据
+        let viewModel = viewModels[indexPath.row]
+        
+        cell.viewModel = viewModel
+        
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+   
 }
+
+
