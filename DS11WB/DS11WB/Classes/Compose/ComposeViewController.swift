@@ -13,6 +13,10 @@ class ComposeViewController: UIViewController {
     private lazy var titleView:ComposeTitleView = ComposeTitleView()
     private lazy var images:[UIImage] = [UIImage]()
     
+    private lazy var emoticonVC:EmoticonController = EmoticonController {[weak self] (emoticon) in
+        self?.textView.insertEmoticon(emoticon: emoticon)
+        self?.textViewDidChange(self!.textView)
+    }
     @IBOutlet weak var textView: ComposeTextView!
     
     @IBOutlet weak var toolbarBottomCons: NSLayoutConstraint!
@@ -29,7 +33,7 @@ class ComposeViewController: UIViewController {
         
         //监听通知
         setupNotifications()
-      
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,6 +53,15 @@ class ComposeViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
         
+    }
+    
+    
+    
+    @IBAction func emoticonBtnClick(_ sender: Any) {
+        textView.resignFirstResponder()
+        textView.inputView = textView.inputView != nil ? nil : emoticonVC.view
+        
+        textView.becomeFirstResponder()
     }
 }
 
@@ -107,6 +120,8 @@ extension ComposeViewController{
         }
         
     }
+    
+    
 }
 
 //MARK:-添加照片和删除照片
