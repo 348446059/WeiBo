@@ -13,4 +13,9 @@ let app_key = "3811271548"
 let app_screte = "db13249925a91ca0a5b3ae5b8ff302c1"
 let redirect_url = "http://www.520it.com"
 
+let PicPickerAddPhotoNote = "PicPickerAddPhotoNote"
+
+let PicPickerRemovePhoto = "PicPickerRemovePhoto"
+
+
 

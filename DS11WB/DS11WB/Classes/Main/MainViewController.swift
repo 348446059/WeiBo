@@ -46,7 +46,10 @@ extension MainViewController{
     //@SEL -->类中查找方法列表-->根据@SEL找到imp函数-->执行函数
     //如果在private中加入@objc 说明该方法依然被加入到方法列表中
      @objc private func composeBtnClick(){
-      
+        let composeVC = ComposeViewController()
+        let composeNav = UINavigationController(rootViewController: composeVC)
+        present(composeNav, animated: true, completion: nil)
+        
     }
     
 }

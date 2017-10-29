@@ -24,9 +24,14 @@ class HomeViewCell: UITableViewCell {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var soucreLabel: UILabel!
     
+    @IBOutlet weak var bgView: UIView!
+    
+    
+    @IBOutlet weak var retweenTextTopCons: NSLayoutConstraint!
     @IBOutlet weak var picViewWCons: NSLayoutConstraint!
     @IBOutlet weak var picViewHCons: NSLayoutConstraint!
     
+    @IBOutlet weak var picViewBottomCons: NSLayoutConstraint!
     @IBOutlet weak var picView: PicCollectionView!
     
     @IBOutlet weak var revertLabel: UILabel!
@@ -55,6 +60,7 @@ class HomeViewCell: UITableViewCell {
             //7.设置来源
             contentLabel.text = viewModel.status?.text
             
+            soucreLabel.text  = "来自 " + (viewModel.sourceText ?? "")
             //8.设置昵称的文字颜色
             screenName.textColor = viewModel.vipImage == nil ? UIColor.black : UIColor.orange
             
@@ -68,12 +74,18 @@ class HomeViewCell: UITableViewCell {
             
             //11.设置转发微博
             if viewModel.status?.retweeted_status != nil {
-               
+               //1.设置转发正文
                 if let screenName =  viewModel.status?.retweeted_status?.user?.screen_name, let retweentedText = viewModel.status?.retweeted_status?.text{
-                    revertLabel.text = "@" + "\(screenName):" + retweentedText
+                    revertLabel.text = "@" + "\(screenName): " + retweentedText
+                    //设置转发正文距离顶部的约束
+                    retweenTextTopCons.constant = 15
                 }
+                //2.设置转发微博背景
+                bgView.isHidden = false
             }else{
-                revertLabel.text = ""
+                revertLabel.text = nil
+                bgView.isHidden = true
+                retweenTextTopCons.constant = 0
             }
             
         }
@@ -82,7 +94,7 @@ class HomeViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         contentWidth.constant = UIScreen.main.bounds.width - 2 * edgeMargin
-        
+        bgView.autoresizingMask = .flexibleTopMargin
      
     }
    
@@ -93,8 +105,11 @@ extension HomeViewCell{
     private func calculatePicViewSize(count:Int) -> CGSize {
          //1.没有配图
         if count == 0{
+            picViewBottomCons.constant = 0
             return CGSize.zero
         }
+        
+        picViewBottomCons.constant = 10
         //2.取出picView的layout
         let layout = picView.collectionViewLayout as! UICollectionViewFlowLayout
         
@@ -117,7 +132,7 @@ extension HomeViewCell{
      
         //6.四张配图
         if count == 4 {
-            let picViewWH = imageViewWH * 2 + itemMargin
+            let picViewWH = imageViewWH * 2 + itemMargin + 1
             return CGSize(width: picViewWH, height: picViewWH)
         }
         

@@ -79,7 +79,7 @@ extension NetworkTools{
 
 //请求首页数据
 extension NetworkTools{
-    func loadStatuses(finished:@escaping ([[String:AnyObject]]?,NSError?)->())  {
+    func loadStatuses(since_id:Int,max_id:Int, finished:@escaping ([[String:AnyObject]]?,NSError?)->())  {
         //1.获取请求的URLString
         let urlString = "https://api.weibo.com/2/statuses/home_timeline.json"
         
@@ -89,7 +89,9 @@ extension NetworkTools{
         guard let access_token = UserAccountTools.shareInstance.account?.access_token else {
             return
         }
-        let params = ["access_token":access_token] as [String : AnyObject]
+       
+        
+        let params = ["access_token":access_token,"since_id":"\(since_id)","max_id":"\(max_id)"] as [String : AnyObject]
         
         //3.发送网络请求
         request(methodType: .GET, url: urlString, params: params ) { (result, error) in
