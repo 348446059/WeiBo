@@ -31,6 +31,13 @@
 		0974E1621F93577D00A6D266 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0974E1601F93577D00A6D266 /* Discover.storyboard */; };
 		0974E1641F9357D200A6D266 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0974E1631F9357D200A6D266 /* Profile.storyboard */; };
 		0974E1671F935A4100A6D266 /* Null.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0974E1651F935A4100A6D266 /* Null.storyboard */; };
+		0987C3E31FA83FBC00D87D3E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0987C3E21FA83FBC00D87D3E /* 1.jpg */; };
+		0987C3E51FA83FC000D87D3E /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0987C3E41FA83FC000D87D3E /* 2.jpg */; };
+		0987C3E71FA83FC600D87D3E /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0987C3E61FA83FC600D87D3E /* 3.jpg */; };
+		0987C3EA1FA844F000D87D3E /* PhotoBroswerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987C3E91FA844F000D87D3E /* PhotoBroswerController.swift */; };
+		0987C3ED1FA8510E00D87D3E /* BroswerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987C3EB1FA8510E00D87D3E /* BroswerViewCell.swift */; };
+		0987C3F01FA863A000D87D3E /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987C3EF1FA863A000D87D3E /* ProgressView.swift */; };
+		098890801FA97163009C4EEA /* PhotoBroswerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0988907F1FA97163009C4EEA /* PhotoBroswerAnimator.swift */; };
 		09A739E41FA218B800A9ABF7 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A739E31FA218B800A9ABF7 /* StatusViewModel.swift */; };
 		09C711A61FA1A8730054CD6A /* NSDate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C711A51FA1A8730054CD6A /* NSDate-Extension.swift */; };
 		09CCE9351FA20FAF009B23D3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CCE9341FA20FAF009B23D3 /* User.swift */; };
@@ -90,6 +97,13 @@
 		0974E1611F93577D00A6D266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DS11WB/Base.lproj/Discover.storyboard; sourceTree = "<group>"; };
 		0974E1631F9357D200A6D266 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		0974E1661F935A4100A6D266 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DS11WB/Base.lproj/Null.storyboard; sourceTree = "<group>"; };
+		0987C3E21FA83FBC00D87D3E /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		0987C3E41FA83FC000D87D3E /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		0987C3E61FA83FC600D87D3E /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		0987C3E91FA844F000D87D3E /* PhotoBroswerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBroswerController.swift; sourceTree = "<group>"; };
+		0987C3EB1FA8510E00D87D3E /* BroswerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroswerViewCell.swift; sourceTree = "<group>"; };
+		0987C3EF1FA863A000D87D3E /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		0988907F1FA97163009C4EEA /* PhotoBroswerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBroswerAnimator.swift; sourceTree = "<group>"; };
 		09A739E31FA218B800A9ABF7 /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		09C711A51FA1A8730054CD6A /* NSDate-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate-Extension.swift"; sourceTree = "<group>"; };
 		09CCE9341FA20FAF009B23D3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -144,6 +158,9 @@
 			isa = PBXGroup;
 			children = (
 				090C09581FA545F5007D909E /* screen1.jpg */,
+				0987C3E21FA83FBC00D87D3E /* 1.jpg */,
+				0987C3E41FA83FC000D87D3E /* 2.jpg */,
+				0987C3E61FA83FC600D87D3E /* 3.jpg */,
 			);
 			path = screenshots;
 			sourceTree = "<group>";
@@ -222,6 +239,17 @@
 			path = welcome;
 			sourceTree = "<group>";
 		};
+		0987C3E81FA844C300D87D3E /* PhotoBroswer */ = {
+			isa = PBXGroup;
+			children = (
+				0987C3E91FA844F000D87D3E /* PhotoBroswerController.swift */,
+				0987C3EB1FA8510E00D87D3E /* BroswerViewCell.swift */,
+				0987C3EF1FA863A000D87D3E /* ProgressView.swift */,
+				0988907F1FA97163009C4EEA /* PhotoBroswerAnimator.swift */,
+			);
+			path = PhotoBroswer;
+			sourceTree = "<group>";
+		};
 		09E5A0B11F931EB4006D87F7 = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +309,7 @@
 		09E5A0D11F93263F006D87F7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0987C3E81FA844C300D87D3E /* PhotoBroswer */,
 				095832E71FA079D000895FBF /* HomeModel */,
 				09EB1D2C1F9B36AB00684004 /* UIPopover */,
 				09E5A0D51F9329A7006D87F7 /* HomeViewController.swift */,
@@ -456,6 +485,7 @@
 				0913171E1FA48D7500FB5242 /* ComposeViewController.xib in Resources */,
 				090C09591FA545F5007D909E /* screen1.jpg in Resources */,
 				09E5A0E61F9353BE006D87F7 /* Main.storyboard in Resources */,
+				0987C3E31FA83FBC00D87D3E /* 1.jpg in Resources */,
 				0974E1671F935A4100A6D266 /* Null.storyboard in Resources */,
 				09E5A0C81F931EB4006D87F7 /* LaunchScreen.storyboard in Resources */,
 				0974E15F1F93575500A6D266 /* Message.storyboard in Resources */,
@@ -463,10 +493,12 @@
 				097122471F9DD95400B04603 /* WelcomeViewController.xib in Resources */,
 				09FF99B51FA581EE00B85670 /* Emoticons.bundle in Resources */,
 				09E5A0C51F931EB4006D87F7 /* Assets.xcassets in Resources */,
+				0987C3E51FA83FC000D87D3E /* 2.jpg in Resources */,
 				090F10B91F9C7C31002D4B64 /* OAuthViewController.xib in Resources */,
 				0974E15D1F93571500A6D266 /* Home.storyboard in Resources */,
 				0974E1641F9357D200A6D266 /* Profile.storyboard in Resources */,
 				0974E1621F93577D00A6D266 /* Discover.storyboard in Resources */,
+				0987C3E71FA83FC600D87D3E /* 3.jpg in Resources */,
 				092A883A1F9B0D7100C2D61A /* VisitorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +514,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-DS11WB/Pods-DS11WB-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/HYLabel/HYLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
@@ -490,6 +523,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HYLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
@@ -551,6 +585,7 @@
 				09FF99B81FA581EE00B85670 /* EmoticonManager.swift in Sources */,
 				09FF99B31FA581EE00B85670 /* EmoticonAttachment.swift in Sources */,
 				090F10B41F9C35C4002D4B64 /* NetworkTools.swift in Sources */,
+				0987C3F01FA863A000D87D3E /* ProgressView.swift in Sources */,
 				096490671F9DCE5C00506786 /* UserAccountTools.swift in Sources */,
 				09EB1D291F9B2D2C00684004 /* UIBarButtonItemExtension.swift in Sources */,
 				0913171D1FA48D7500FB5242 /* ComposeViewController.swift in Sources */,
@@ -565,10 +600,13 @@
 				09E5A0DA1F9329DD006D87F7 /* DiscoverViewController.swift in Sources */,
 				09E5A0DC1F9329EF006D87F7 /* ProfileViewController.swift in Sources */,
 				09FF99B21FA581EE00B85670 /* EmioticonViewCell.swift in Sources */,
+				0987C3ED1FA8510E00D87D3E /* BroswerViewCell.swift in Sources */,
+				0987C3EA1FA844F000D87D3E /* PhotoBroswerController.swift in Sources */,
 				09E5A0DF1F9343EF006D87F7 /* MainViewController.swift in Sources */,
 				09FF99B41FA581EE00B85670 /* EmoticonController.swift in Sources */,
 				09FF99B91FA581EE00B85670 /* EmoticonPackage.swift in Sources */,
 				09EA39F71FA2F1E8003D6FB4 /* HomeViewCell.swift in Sources */,
+				098890801FA97163009C4EEA /* PhotoBroswerAnimator.swift in Sources */,
 				092A88361F9B0B4F00C2D61A /* BaseViewController.swift in Sources */,
 				091317191FA4112500FB5242 /* PicCollectionView.swift in Sources */,
 				09EB1D321F9B3FF700684004 /* PresentationController.swift in Sources */,

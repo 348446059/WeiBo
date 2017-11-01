@@ -19,7 +19,7 @@ class ComposeTitleView: UIView {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        //you never happy if you continue to sear for what is happiness,you never
         setupUI()
     }
     

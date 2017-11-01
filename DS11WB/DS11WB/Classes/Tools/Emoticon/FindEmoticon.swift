@@ -35,9 +35,12 @@ class FindEmoticon: NSObject {
         
         // 4.获取结果
         let attrMStr = NSMutableAttributedString(string: statusText)
-        for i in (results.count - 1)...0  {
+       
+        let reverResults = results.enumerated().reversed()
+        
+        for (index,item) in reverResults {
             // 4.0.获取结果
-            let result = results[i]
+            let result = item
             
             // 4.1.获取chs
             let chs = (statusText as NSString).substring(with: result.range)
@@ -56,6 +59,7 @@ class FindEmoticon: NSObject {
             // 4.4.将属性字符串替换到来源的文字位置
             attrMStr.replaceCharacters(in: result.range, with: attrImageStr)
         }
+       
        
         
         // 返回结果

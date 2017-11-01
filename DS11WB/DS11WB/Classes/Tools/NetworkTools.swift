@@ -107,8 +107,53 @@ extension NetworkTools{
     }
 }
 
+//发送微博
+extension NetworkTools{
+    func sendStatus(statusText:String ,isSuccess:@escaping (Bool)->()) {
+        let urlString = "https://api.weibo.com/2/statuses/share.json"
+        
+        let access_token = UserAccountTools.shareInstance.account?.access_token
+        let str = statusText + redirect_url
+        
+        //redirect_url.
+        let params = ["access_token":access_token!,"status":str] as [String:AnyObject]
+        
+        request(methodType: .POST, url: urlString, params: params) { (result, error) in
+            if result != nil{
+                isSuccess(true)
+            }else{
+                print(String(describing: error))
+                isSuccess(false)
+            }
+        }
+        
+        
+    }
+}
 
-
+extension NetworkTools{
+    func sendStatus(statusText:String,image:UIImage,isSuccess:@escaping(Bool)->()) {
+        let urlString = "https://api.weibo.com/2/statuses/share.json"
+        
+        let access_token = UserAccountTools.shareInstance.account?.access_token
+        let str = statusText + redirect_url
+        
+        //redirect_url.
+        let params = ["access_token":access_token!,"status":str] as [String:AnyObject]
+        
+        post(urlString, parameters: params, constructingBodyWith: { (formData) in
+            if  let imageData = UIImageJPEGRepresentation(image, 0.2) {
+                formData.appendPart(withForm: imageData, name: "pic")
+            }
+            
+        }, progress: nil, success: { (_, _) in
+            isSuccess(true)
+        }) { (_, error) in
+            print(error)
+        }
+        
+    }
+}
 
 
 

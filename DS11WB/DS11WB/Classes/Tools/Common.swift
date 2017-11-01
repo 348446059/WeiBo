@@ -17,5 +17,9 @@ let PicPickerAddPhotoNote = "PicPickerAddPhotoNote"
 
 let PicPickerRemovePhoto = "PicPickerRemovePhoto"
 
+let ShowPhotoBrowserNoteIndexKey = "ShowPhotoBrowserNoteIndexKey"
+let ShowPhotoBrowserNoteUrlsKey = "ShowPhotoBrowserNoteUrlsKey"
+let ShowPhotoBrowserNote = "ShowPhotoBrowserNote"
+
 
 

@@ -8,8 +8,10 @@
 
 import UIKit
 import SDWebImage
+import HYLabel
 private let edgeMargin:CGFloat = 15
 private let itemMargin:CGFloat = 10
+
 class HomeViewCell: UITableViewCell {
   //MARK：属性
     
@@ -21,7 +23,7 @@ class HomeViewCell: UITableViewCell {
     @IBOutlet weak var contentWidth: NSLayoutConstraint!
     @IBOutlet weak var timeLabel: UILabel!
     
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var contentLabel: HYLabel!
     @IBOutlet weak var soucreLabel: UILabel!
     
     @IBOutlet weak var bgView: UIView!
@@ -34,7 +36,7 @@ class HomeViewCell: UITableViewCell {
     @IBOutlet weak var picViewBottomCons: NSLayoutConstraint!
     @IBOutlet weak var picView: PicCollectionView!
     
-    @IBOutlet weak var revertLabel: UILabel!
+    @IBOutlet weak var revertLabel: HYLabel!
     
     var viewModel:StatusViewModel?{
         didSet{
@@ -58,7 +60,7 @@ class HomeViewCell: UITableViewCell {
             timeLabel.text = viewModel.createAtText
             
             //7.设置来源
-            contentLabel.text = viewModel.status?.text
+            contentLabel.attributedText = FindEmoticon.shareIntance.findAttrString(statusText: viewModel.status?.text, font: contentLabel.font)
             
             soucreLabel.text  = "来自 " + (viewModel.sourceText ?? "")
             //8.设置昵称的文字颜色
@@ -76,7 +78,9 @@ class HomeViewCell: UITableViewCell {
             if viewModel.status?.retweeted_status != nil {
                //1.设置转发正文
                 if let screenName =  viewModel.status?.retweeted_status?.user?.screen_name, let retweentedText = viewModel.status?.retweeted_status?.text{
-                    revertLabel.text = "@" + "\(screenName): " + retweentedText
+                    let retweetedContentLabel = "@" + "\(screenName): " + retweentedText
+                    
+                    revertLabel.attributedText  = FindEmoticon.shareIntance.findAttrString(statusText: retweetedContentLabel, font: revertLabel.font)
                     //设置转发正文距离顶部的约束
                     retweenTextTopCons.constant = 15
                 }
@@ -96,6 +100,7 @@ class HomeViewCell: UITableViewCell {
         contentWidth.constant = UIScreen.main.bounds.width - 2 * edgeMargin
         bgView.autoresizingMask = .flexibleTopMargin
      
+        revertLabel.matchTextColor = UIColor.orange
     }
    
 }

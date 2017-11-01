@@ -22,6 +22,8 @@ class HomeViewController: BaseViewController {
     private lazy var viewModels:[StatusViewModel] = [StatusViewModel]()
     //MARK:--懒加载
     private lazy var titleBtn: TitleBtn = TitleBtn()
+    
+    private lazy var photoBrowserAnimator = PhotoBroswerAnimator()
     override func viewDidLoad() {
         super.viewDidLoad()
         //1.没有登陆时设置的内容
@@ -45,6 +47,9 @@ class HomeViewController: BaseViewController {
         
         //5.设置提示label
         setupTipView()
+        
+        //6.注册通知
+        setupNotification()
     }
 }
 //MARK:- 设置UI界面
@@ -76,7 +81,7 @@ extension HomeViewController{
         tableView.mj_header = header
         
         //4.进入刷新状态
-       // tableView.mj_header.beginRefreshing()
+        tableView.mj_header.beginRefreshing()
     }
     
     
@@ -99,6 +104,10 @@ extension HomeViewController{
         tipLabel.isHidden = true
         
     }
+    
+    private func setupNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(showPhotoBrowser), name: NSNotification.Name(rawValue: ShowPhotoBrowserNote), object: nil)
+    }
 }
 
 //MARK:--事件监听
@@ -116,6 +125,27 @@ extension HomeViewController{
         //3.弹出控制器
         present(popoverVC, animated: true, completion: nil)
         
+    }
+    
+    @objc private func showPhotoBrowser(note:Notification)
+    {
+        let indexPath = note.userInfo![ShowPhotoBrowserNoteIndexKey] as! NSIndexPath
+        let picUrls = note.userInfo![ShowPhotoBrowserNoteUrlsKey] as! [URL]
+        let objc = note.object as! PicCollectionView
+        //1.创建控制器
+        let photoVC = PhotoBroswerController(indexPath: indexPath, picUrls: picUrls)
+        
+        //2.设置model样式
+        photoVC.modalPresentationStyle = .custom
+       
+        //3.设置转场代理
+        photoVC.transitioningDelegate = photoBrowserAnimator
+        
+        //4.设置动画代理
+        photoBrowserAnimator.presentedDelegate = objc
+        photoBrowserAnimator.dismissDelegate = photoVC
+        photoBrowserAnimator.indexPath = indexPath as IndexPath
+        present(photoVC, animated: true, completion: nil)
     }
 }
 

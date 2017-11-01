@@ -5,7 +5,8 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,7 +22,7 @@
                     <connections>
                         <segue destination="6nb-Yk-bCM" kind="relationship" relationship="viewControllers" id="h2S-9z-U9r"/>
                         <segue destination="pAr-Lg-19r" kind="relationship" relationship="viewControllers" id="WIg-1Q-nXF"/>
-                        <segue destination="3xh-Ps-EJ6" kind="relationship" relationship="viewControllers" id="ln3-Xb-s1U"/>
+                        <segue destination="ZOq-t1-jGC" kind="relationship" relationship="viewControllers" id="ln3-Xb-s1U"/>
                         <segue destination="M4U-On-e46" kind="relationship" relationship="viewControllers" id="tsJ-od-Kuf"/>
                         <segue destination="o8J-1U-R00" kind="relationship" relationship="viewControllers" id="cSZ-4Y-2fR"/>
                     </connections>
@@ -34,57 +35,57 @@
         <scene sceneID="nfw-Ya-2xd">
             <objects>
                 <viewControllerPlaceholder storyboardName="Home" id="6nb-Yk-bCM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" selectedImage="tabbar_home_highlighted" id="KxB-wd-NkJ"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="KxB-wd-NkJ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pdh-Qt-M6f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1374" y="262"/>
+            <point key="canvasLocation" x="-1307" y="115"/>
         </scene>
         <!--Message-->
         <scene sceneID="wrq-1D-Z5p">
             <objects>
                 <viewControllerPlaceholder storyboardName="Message" id="pAr-Lg-19r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="tabbar_message_center_highlighted" id="IqV-uZ-2OE"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="IqV-uZ-2OE"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZsW-jf-Fud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1322" y="363"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="qFI-Ez-ZXz">
+            <objects>
+                <viewController id="ZOq-t1-jGC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kWv-cg-mTe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="xIE-wk-nSN"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="unj-JD-SvT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nop-0C-YVt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-844" y="479"/>
+        </scene>
         <!--Discover-->
         <scene sceneID="0nR-T8-8Xd">
             <objects>
                 <viewControllerPlaceholder storyboardName="Discover" id="M4U-On-e46" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="tabbar_discover_highlighted" id="eJz-pz-Uqz"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="eJz-pz-Uqz"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mez-bu-1s9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1398" y="555"/>
+            <point key="canvasLocation" x="-1433" y="633"/>
         </scene>
         <!--Profile-->
         <scene sceneID="aSZ-Pl-Qlv">
             <objects>
                 <viewControllerPlaceholder storyboardName="Profile" id="o8J-1U-R00" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="tabbar_profile" id="AHg-py-7gb"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="AHg-py-7gb"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ke-nV-HCN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1374" y="664"/>
-        </scene>
-        <!--Null-->
-        <scene sceneID="bh0-8b-3pC">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Null" id="3xh-Ps-EJ6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="Item" id="Jp2-E1-710"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tj7-Wz-NC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1374" y="483"/>
+            <point key="canvasLocation" x="-1259" y="807"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="tabbar_discover_highlighted" width="30" height="30"/>
-        <image name="tabbar_home_highlighted" width="30" height="30"/>
-        <image name="tabbar_message_center_highlighted" width="30" height="30"/>
-        <image name="tabbar_profile" width="30" height="30"/>
-    </resources>
 </document>

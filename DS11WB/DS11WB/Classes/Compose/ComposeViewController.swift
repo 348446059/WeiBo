@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 class ComposeViewController: UIViewController {
     
     private lazy var titleView:ComposeTitleView = ComposeTitleView()
@@ -99,6 +99,33 @@ extension ComposeViewController{
         dismiss(animated: true, completion: nil)
     }
     @objc private func sendBtnClick(){
+        
+        textView.resignFirstResponder()
+        let statusText = textView.getEmoticonString()
+        
+        //第一张图片上传
+        if let image = images.first {
+            NetworkTools.shareInstance.sendStatus(statusText: statusText, image: image, isSuccess: { (success) in
+                if !success{
+                    SVProgressHUD.showError(withStatus: "发送微博失败")
+                    return
+                }
+                SVProgressHUD.showSuccess(withStatus: "发送微博成功")
+                self.dismiss(animated: true, completion: nil)
+            })
+        }else{
+            
+            NetworkTools.shareInstance.sendStatus(statusText: statusText) { (result) in
+                if !result{
+                    SVProgressHUD.showError(withStatus: "发送微博失败")
+                    return
+                }
+                SVProgressHUD.showSuccess(withStatus: "发送微博成功")
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+       
         
     }
     
