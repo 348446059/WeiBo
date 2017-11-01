@@ -38,6 +38,7 @@
 		0987C3ED1FA8510E00D87D3E /* BroswerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987C3EB1FA8510E00D87D3E /* BroswerViewCell.swift */; };
 		0987C3F01FA863A000D87D3E /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0987C3EF1FA863A000D87D3E /* ProgressView.swift */; };
 		098890801FA97163009C4EEA /* PhotoBroswerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0988907F1FA97163009C4EEA /* PhotoBroswerAnimator.swift */; };
+		098890831FA9B259009C4EEA /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 098890821FA9B259009C4EEA /* 4.jpg */; };
 		09A739E41FA218B800A9ABF7 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A739E31FA218B800A9ABF7 /* StatusViewModel.swift */; };
 		09C711A61FA1A8730054CD6A /* NSDate-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C711A51FA1A8730054CD6A /* NSDate-Extension.swift */; };
 		09CCE9351FA20FAF009B23D3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CCE9341FA20FAF009B23D3 /* User.swift */; };
@@ -104,6 +105,7 @@
 		0987C3EB1FA8510E00D87D3E /* BroswerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroswerViewCell.swift; sourceTree = "<group>"; };
 		0987C3EF1FA863A000D87D3E /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		0988907F1FA97163009C4EEA /* PhotoBroswerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBroswerAnimator.swift; sourceTree = "<group>"; };
+		098890821FA9B259009C4EEA /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		09A739E31FA218B800A9ABF7 /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		09C711A51FA1A8730054CD6A /* NSDate-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate-Extension.swift"; sourceTree = "<group>"; };
 		09CCE9341FA20FAF009B23D3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				0987C3E21FA83FBC00D87D3E /* 1.jpg */,
 				0987C3E41FA83FC000D87D3E /* 2.jpg */,
 				0987C3E61FA83FC600D87D3E /* 3.jpg */,
+				098890821FA9B259009C4EEA /* 4.jpg */,
 			);
 			path = screenshots;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				0974E1671F935A4100A6D266 /* Null.storyboard in Resources */,
 				09E5A0C81F931EB4006D87F7 /* LaunchScreen.storyboard in Resources */,
 				0974E15F1F93575500A6D266 /* Message.storyboard in Resources */,
+				098890831FA9B259009C4EEA /* 4.jpg in Resources */,
 				09EB1D301F9B36EE00684004 /* PopoverViewController.xib in Resources */,
 				097122471F9DD95400B04603 /* WelcomeViewController.xib in Resources */,
 				09FF99B51FA581EE00B85670 /* Emoticons.bundle in Resources */,
